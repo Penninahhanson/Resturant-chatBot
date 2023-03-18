@@ -10,7 +10,6 @@ socket.on("Botmessage", (message) => {
 
   outputBotMessage(message);
 
-  // Scroll down
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
@@ -19,9 +18,7 @@ socket.on("chats", (chatMsg) => {
   console.log(chatMsg);
 
   outputResturantChat(chatMsg);
-  // outputResturantChat(chatMsg)
 
-  // Scroll down
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
@@ -31,7 +28,6 @@ socket.on("MenuOption", (menu) => {
 
   outputResturantMenu(menu);
 
-  // Scroll down
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
@@ -49,7 +45,7 @@ socket.on("food menu", (food) => {
 socket.on("CurrentOrder", (order) => {
   console.log(order);
   outputFoodOrder(order);
-  // Scroll down
+  
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
@@ -64,7 +60,7 @@ chatForm.addEventListener("submit", (e) => {
   //Emit chat message to  server
   socket.emit("ResturantMessages", msg);
 
-  // Clear chat input
+    
   formInput.value = "";
   formInput.focus();
 });
@@ -86,7 +82,7 @@ function outputResturantChat(chatMsg) {
   const div = document.createElement("div");
   div.classList.add("chats");
   div.innerHTML = `
-    <div class="card mb-2 mt-3 ">
+    <div class="card chat-card mb-2 mt-3 bg-success ">
     <div class="card-body" style="text-align: right;>
     <p>Ichie <span>${chatMsg.time}</span></p>
     <p class="text" style="color: red;">${chatMsg.text}</p>
@@ -100,7 +96,7 @@ function outputResturantMenu(menu) {
   const div = document.createElement("div");
   div.classList.add("chats");
   div.innerHTML = `
-    <div class="card mb-2 mt-3 style="text-align: left;">
+    <div class="card chat-card mb-2 mt-3 bg-warning" style="text-align: left;">
     <div class="card-body">
     <ul style="list-style-type:none;">
     <li>
@@ -119,7 +115,7 @@ function outputFoodStore(menu) {
   const div = document.createElement("div");
   div.classList.add("chats");
   div.innerHTML = `
-    <div class="card mb-2 mt-3" style="text-align: left>
+    <div class="card chat-card mb-2 mt-3 bg-warning" style="text-align: left>
     <div class="card-body">
     <p class="m-2">Please select food item to record</p>
     ${Object.values(menu)
@@ -139,7 +135,7 @@ function outputFoodOrder(order) {
   const div = document.createElement("div");
   div.classList.add("chats");
   div.innerHTML = `
-    <div class="card mb-2 mt-3" style="text-align: left>
+    <div class="card chat-card mb-2 mt-3" style="text-align: left>
     <div class="card-body">
     <p class="m-2">Your current order :</p>
     ${order.products.map((key) => `<li>${key.title}</li>`).join("")} 

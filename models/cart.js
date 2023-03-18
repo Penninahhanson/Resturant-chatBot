@@ -27,4 +27,4 @@ module.exports = class Cart {
         return cart;
     }
 
-}
+} 

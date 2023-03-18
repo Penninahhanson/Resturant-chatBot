@@ -130,6 +130,17 @@ io.on('connection',(socket)=>{
                   progressCount = 0   
                break 
         }
+        switch(msg){
+            case "0":
+              if(Cart.getCart()===null){
+                socket.emit('Botmessage',formatMessages(`No order to place.<br>Please select <b> 1 </b> to see list of food items`))
+                      }else{
+                          Object.keys(Cart.getCart()).map(key=>Cart.getCart[key]==null)
+                          socket.emit('Botmessage',formatMessages(`No order has been cancelled.<br>Please select <b> menue</b> to see options`))
+                     }
+                  progressCount = 0   
+               break 
+        }
         
     })
     // disconnet
