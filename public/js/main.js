@@ -6,7 +6,6 @@ const socket = io();
 
 //Bot Messages from server
 socket.on("Botmessage", (message) => {
-  console.log(message);
 
   outputBotMessage(message);
 
@@ -15,7 +14,6 @@ socket.on("Botmessage", (message) => {
 
 //Resturant Chat messages from server
 socket.on("chats", (chatMsg) => {
-  console.log(chatMsg);
 
   outputResturantChat(chatMsg);
 
@@ -33,8 +31,7 @@ socket.on("MenuOption", (menu) => {
 
 //Resturant Menu messages from server
 socket.on("food menu", (food) => {
-  console.log(food);
-
+  
   outputFoodStore(food);
 
   // Scroll down
@@ -70,9 +67,10 @@ function outputBotMessage(message) {
   const div = document.createElement("div");
   div.classList.add("chats");
   div.innerHTML = `
-   
+   <div class="w-100 d-flex flex-column">
     <p style="text-align: left;>${message.username} <span>${message.time}</span></p>
     <p class="text" style="color:red;text-align:left;">${message.text}</p>
+    </div>
    `;
   document.querySelector(".chat-messages").appendChild(div);
 }
@@ -82,9 +80,9 @@ function outputResturantChat(chatMsg) {
   const div = document.createElement("div");
   div.classList.add("chats");
   div.innerHTML = `
-    <div class="card chat-card mb-2 mt-3 bg-success ">
+    <div class="card chat-card mb-2 mt-3 bg-success float-end">
     <div class="card-body" style="text-align: right;>
-    <p>Ichie <span>${chatMsg.time}</span></p>
+    <p><span>${chatMsg.time}</span></p>
     <p class="text" style="color: red;">${chatMsg.text}</p>
     </div>
     </div>`;

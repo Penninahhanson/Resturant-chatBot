@@ -113,8 +113,8 @@ io.on('connection',(socket)=>{
               if(Cart.getCart()===null){
                 socket.emit('Botmessage',formatMessages(`No order to place.<br>Please select <b> 1 </b> to see list of food items`))
                       }else{
-                          console.log(Cart.getCart())
-                          socket.emit('message',formatMessages(`Order placed.<br>Please select <b> 97 </b> to see current order`)) 
+                          Cart.getCart()
+                          socket.emit('Botmessage',formatMessages(`Order placed.<br>Please select <b> 97 </b> to see current order`)) 
                      }
                   progressCount = 0   
                break 
@@ -136,7 +136,7 @@ io.on('connection',(socket)=>{
                 socket.emit('Botmessage',formatMessages(`No order to place.<br>Please select <b> 1 </b> to see list of food items`))
                       }else{
                           Object.keys(Cart.getCart()).map(key=>Cart.getCart[key]==null)
-                          socket.emit('Botmessage',formatMessages(`No order has been cancelled.<br>Please select <b> menue</b> to see options`))
+                          socket.emit('Botmessage',formatMessages(`order has been cancelled.<br>Please select <b> menu</b> to see options`))
                      }
                   progressCount = 0   
                break 
